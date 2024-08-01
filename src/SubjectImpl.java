@@ -1,11 +1,11 @@
-public class Course implements Subject {
+public class SubjectImpl implements Subject {
 
     private int subId;
     private String subName;
     private String subType;
 
     // 생성자
-    public Course(int subId, String subjectName, String subjectType) {
+    public SubjectImpl(int subId, String subjectName, String subjectType) {
         this.subId = subId;
         this.subName = subjectName;
         this.subType = subjectType;
