@@ -1,3 +1,5 @@
+import java.util.List;
+
 public interface Subject {
     // 과목 타입 상수 정의
     String REQUIRED = "필수";
@@ -13,4 +15,9 @@ public interface Subject {
     void setSubId(int subtId);
     void setSubName(String subName);
     void setSubType(String subType);
+
+    // 메서드
+    void addSubject(int subId, String subjectName, String subjectType);
+    void printSubjects();
+
 }
