@@ -1,77 +1,35 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubjectImpl implements Subject {
+public class SubjectImpl {
 
-    private static List<Subject> subjects = new ArrayList<>();
-
-    private int subId;
-    private String subName;
-    private String subType;
-
-    // 생성자
-    public SubjectImpl() {
-
-    }
-
-    public SubjectImpl(int subId, String subjectName, String subjectType) {
-        this.subId = subId;
-        this.subName = subjectName;
-        this.subType = subjectType;
-    }
-
-    @Override
-    public int getSubId() {
-        return subId;
-    }
-
-    @Override
-    public String getSubName() {
-        return subName;
-    }
-
-    @Override
-    public String getSubType() {
-        return subType;
-    }
-
-    @Override
-    public void setSubId(int subjectID) {
-        this.subId = subjectID;
-    }
-
-    @Override
-    public void setSubName(String subjectName) {
-        this.subName = subjectName;
-    }
-
-    @Override
-    public void setSubType(String subjectType) {
-        this.subType = subjectType;
-    }
+    private static List<Subject> subjectList = new ArrayList<>();
 
     // 새로운 과목 저장
-    public void addSubject(int subId, String subjectName, String subjectType) {
-        subjects.add(new SubjectImpl(subId, subjectName, subjectType));
+    public void addSubject(String subjectId, String subjectName, String subjectType) {
+        Subject subject = new Subject(subjectId, subjectName, subjectType);
+        subjectList.add(subject);
     }
 
     // 리스트에 있는 과목들 출력
-    public void printSubjects() {
-        if (subjects.isEmpty()) {
-            System.out.println("과목이 없습니다.");
+    public static void viewSubject() {
+        if (subjectList.isEmpty()) {
+            System.out.println("등록된 과목이 없습니다.");
             return;
         }
-        for (Subject subject : subjects) {
-            System.out.println(subject);
+
+        for (Subject subject : subjectList) {
+            System.out.println("ID: " + subject.getSubId() + ", Name: " + subject.getSubName() + ", Status: " + subject.getSubType());
+            System.out.println();
         }
     }
 
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "id='" + subId + '\'' +
-                ", name='" + subName + '\'' +
-                ", type='" + subType + '\'' +
-                '}';
+    // 리스트에 있는 과목에서 삭제
+    public static void deleteSubject(String subjectId) {
+        // 과목 번호를 검색하여 삭제
     }
+
+    // 특정 과목 조회
+//    public static Subject findSubjectById(String subjectId) {
+//    }
 }
