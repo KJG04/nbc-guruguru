@@ -39,9 +39,9 @@ public class ManagementApplication {
 
     private void manageByActionType(ManagementAction.ActionType actionType) {
         System.out.println();
-        ManagementAction[] studentManagementActions = Arrays.stream(ManagementAction.values()).filter(v -> v.getActionType() == actionType).toArray(ManagementAction[]::new);
-        for (ManagementAction studentManagementAction : studentManagementActions) {
-            System.out.println(studentManagementAction.getId() + ". " + studentManagementAction.getDescription());
+        ManagementAction[] managementActions = Arrays.stream(ManagementAction.values()).filter(v -> v.getActionType() == actionType).toArray(ManagementAction[]::new);
+        for (ManagementAction managementAction : managementActions) {
+            System.out.println(managementAction.getId() + ". " + managementAction.getDescription());
         }
         System.out.print("실행할 기능을 입력해주세요: ");
         int id = this.scanner.nextInt();
