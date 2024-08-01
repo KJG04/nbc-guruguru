@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubjectImpl {
+public class SubjectManager {
 
     private static List<Subject> subjectList = new ArrayList<>();
 
