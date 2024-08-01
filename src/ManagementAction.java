@@ -15,6 +15,22 @@ public enum ManagementAction {
     }),
     EDIT_STUDENT(5, "수강생 정보 변경", ActionType.STUDENT, managementApplication -> {
         System.out.println("EDIT_STUDENT");
+    }),
+
+    ADD_SCORE(1, "점수 등록", ActionType.SCORE, managementApplication -> {
+        System.out.println("ADD_SCORE");
+    }),
+    INQUIRY_SCORE(2, "점수 조회", ActionType.SCORE, managementApplication -> {
+        System.out.println("INQUIRY_SCORE");
+    }),
+    EDIT_SCORE(3, "점수 수정", ActionType.SCORE, managementApplication -> {
+        System.out.println("EDIT_SCORE");
+    }),
+    INQUIRY_AVG_SCORE_BY_SUBJECT(4, "과목별 평균 점수 조회", ActionType.SCORE, managementApplication -> {
+        System.out.println("INQUIRY_AVG_SCORE_BY_SUBJECT");
+    }),
+    INQUIRY_REQUIRED_SUBJECT_AVG_SCORE_BY_STATUS(5, "특정 상태 수강생들의 필수 과목 평균 등급을 조회", ActionType.SCORE, managementApplication -> {
+        System.out.println("INQUIRY_REQUIRED_SUBJECT_AVG_SCORE_BY_STATUS");
     });
 
     public enum ActionType {

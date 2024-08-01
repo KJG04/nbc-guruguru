@@ -37,21 +37,17 @@ public class ManagementApplication {
         return ManagementType.getManagementTypeById(id);
     }
 
-    private void manageStudent() {
+    private void manageByActionType(ManagementAction.ActionType actionType) {
         System.out.println();
-        ManagementAction[] studentManagementActions = Arrays.stream(ManagementAction.values()).filter(v -> v.getActionType() == ManagementAction.ActionType.STUDENT).toArray(ManagementAction[]::new);
+        ManagementAction[] studentManagementActions = Arrays.stream(ManagementAction.values()).filter(v -> v.getActionType() == actionType).toArray(ManagementAction[]::new);
         for (ManagementAction studentManagementAction : studentManagementActions) {
             System.out.println(studentManagementAction.getId() + ". " + studentManagementAction.getDescription());
         }
         System.out.print("실행할 기능을 입력해주세요: ");
         int id = this.scanner.nextInt();
         this.scanner.nextLine(); // 개행분자 삭제
-        ManagementAction managementAction = ManagementAction.getManagementAction(id, ManagementAction.ActionType.STUDENT);
+        ManagementAction managementAction = ManagementAction.getManagementAction(id, actionType);
         managementAction.action(this);
-    }
-
-    private void manageScore() {
-
     }
 
     public void start() {
@@ -71,8 +67,8 @@ public class ManagementApplication {
             }
 
             switch (managementType) {
-                case MANAGEMENT_STUDENT -> manageStudent();
-                case MANAGEMENT_SCORE -> manageScore();
+                case MANAGEMENT_STUDENT -> manageByActionType(ManagementAction.ActionType.STUDENT);
+                case MANAGEMENT_SCORE -> manageByActionType(ManagementAction.ActionType.SCORE);
                 case MANAGEMENT_EXIT -> {
                     return;
                 }
