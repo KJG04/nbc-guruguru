@@ -33,7 +33,7 @@ public class ManagementApplication {
         }
         System.out.print("관리하고 싶은 종류를 입력해주세요: ");
         int id = this.scanner.nextInt();
-        this.scanner.nextLine(); // 개행분자 삭제
+        this.scanner.nextLine(); // 개행문자 삭제
         return ManagementType.getManagementTypeById(id);
     }
 
@@ -45,7 +45,7 @@ public class ManagementApplication {
         }
         System.out.print("실행할 기능을 입력해주세요: ");
         int id = this.scanner.nextInt();
-        this.scanner.nextLine(); // 개행분자 삭제
+        this.scanner.nextLine(); // 개행문자 삭제
         ManagementAction managementAction = ManagementAction.getManagementAction(id, actionType);
         managementAction.action(this);
     }
