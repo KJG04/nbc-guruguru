@@ -6,7 +6,7 @@ public class SubjectImpl {
     private static List<Subject> subjectList = new ArrayList<>();
 
     // 새로운 과목 저장
-    public void addSubject(String subjectId, String subjectName, String subjectType) {
+    public void addSubject(int subjectId, String subjectName, String subjectType) {
         Subject subject = new Subject(subjectId, subjectName, subjectType);
         subjectList.add(subject);
     }

@@ -3,17 +3,17 @@ public class Subject {
     public static final String REQUIRED = "필수";
     public static final String ELECTIVE = "선택";
 
-    private String subjectId;
+    private int subjectId;
     private String subjectName;
     private String subjectType;
 
-    public Subject(String seq, String subjectName, String subjectType) {
+    public Subject(int seq, String subjectName, String subjectType) {
         this.subjectId = seq;
         this.subjectName = subjectName;
         this.subjectType = subjectType;
     }
 
-    public String getSubId() {
+    public int getSubId() {
         return subjectId;
     }
 
@@ -25,7 +25,7 @@ public class Subject {
         return subjectType;
     }
 
-    public void setSubId(String subjectID) {
+    public void setSubId(int subjectID) {
         this.subjectId = subjectID;
     }
 
