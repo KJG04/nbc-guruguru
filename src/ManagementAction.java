@@ -19,9 +19,7 @@ public enum ManagementAction {
 
     ADD_SCORE(1, "점수 등록", ActionType.SCORE, new AddScore()),
     INQUIRY_SCORE(2, "점수 조회", ActionType.SCORE, new ShowScore()),
-    EDIT_SCORE(3, "점수 수정", ActionType.SCORE, managementApplication -> {
-        System.out.println("EDIT_SCORE");
-    }),
+    EDIT_SCORE(3, "점수 수정", ActionType.SCORE, new ReplaceScore()),
     INQUIRY_AVG_SCORE_BY_SUBJECT(4, "과목별 평균 점수 조회", ActionType.SCORE, managementApplication -> {
         System.out.println("INQUIRY_AVG_SCORE_BY_SUBJECT");
     }),
