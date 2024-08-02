@@ -4,9 +4,7 @@ public enum ManagementAction {
     ADD_STUDENT(1, "수강생 정보 등록", ActionType.STUDENT, managementApplication -> {
         System.out.println("ADD_STUDENT");
     }),
-    INQUIRY_STUDENT(2, "수강생 조회", ActionType.STUDENT, managementApplication -> {
-        System.out.println("INQUIRY_STUDENT");
-    }),
+    INQUIRY_STUDENT(2, "수강생 조회", ActionType.STUDENT, new StudentList()),
     INQUIRY_STUDENT_BY_STATUS(3, "특정 상태의 수강생을 조회", ActionType.STUDENT, managementApplication -> {
         System.out.println("INQUIRY_STUDENT_BY_STATUS");
     }),
