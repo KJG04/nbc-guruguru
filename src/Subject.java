@@ -1,40 +1,35 @@
-public class Subject {
-    // 과목 타입 상수 정의
-    public static final String REQUIRED = "필수";
-    public static final String ELECTIVE = "선택";
+public enum Subject {
 
-    private int subjectId;
-    private String subjectName;
-    private String subjectType;
+    Java(1, "Java", true),
+    ObjectOriented(2, "객체지향", true),
+    Spring(3, "Spring", true),
+    JPA(4, "JPA", true),
+    MySQL(5, "MySQL", true),
 
-    public Subject(int seq, String subjectName, String subjectType) {
-        this.subjectId = seq;
-        this.subjectName = subjectName;
-        this.subjectType = subjectType;
+    DesignPattern(6, "디자인 패턴", false),
+    SpringSecurity(7, "Spring Security", false),
+    Redis(8, "Redis", false),
+    MongoDB(9, "MongoDB", false);
+
+    private final int subId;
+    private final String subName;
+    private final boolean subType;
+
+    Subject(int subId, String subName, boolean subType) {
+        this.subId = subId;
+        this.subName = subName;
+        this.subType = subType;
     }
 
     public int getSubId() {
-        return subjectId;
+        return subId;
     }
 
     public String getSubName() {
-        return subjectName;
+        return subName;
     }
 
-    public String getSubType() {
-        return subjectType;
+    public boolean isSubType() {
+        return subType;
     }
-
-    public void setSubId(int subjectID) {
-        this.subjectId = subjectID;
-    }
-
-    public void setSubName(String subjectName) {
-        this.subjectName = subjectName;
-    }
-
-    public void setSubType(String subjectType) {
-        this.subjectType = subjectType;
-    }
-
 }
