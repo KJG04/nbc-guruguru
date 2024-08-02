@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public enum ManagementAction {
     ADD_STUDENT(1, "수강생 정보 등록", ActionType.STUDENT, managementApplication -> {
-        System.out.println("ADD_STUDENT");
+        System.out.println("INQUIRY_STUDENT");
     }),
     INQUIRY_STUDENT(2, "수강생 조회", ActionType.STUDENT, managementApplication -> {
         System.out.println("INQUIRY_STUDENT");
@@ -17,12 +17,8 @@ public enum ManagementAction {
         System.out.println("EDIT_STUDENT");
     }),
 
-    ADD_SCORE(1, "점수 등록", ActionType.SCORE, managementApplication -> {
-        System.out.println("ADD_SCORE");
-    }),
-    INQUIRY_SCORE(2, "점수 조회", ActionType.SCORE, managementApplication -> {
-        System.out.println("INQUIRY_SCORE");
-    }),
+    ADD_SCORE(1, "점수 등록", ActionType.SCORE, new AddScore()),
+    INQUIRY_SCORE(2, "점수 조회", ActionType.SCORE, new ShowScore()),
     EDIT_SCORE(3, "점수 수정", ActionType.SCORE, managementApplication -> {
         System.out.println("EDIT_SCORE");
     }),
