@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ScoreManage {
     public static List<Score> scoreList = new ArrayList<>();
@@ -31,6 +33,47 @@ public class ScoreManage {
                     + "\n등급 : " + score.getGrade()
                     + "\n==================="
             );
+        }
+    }
+
+    public static void showScoreAverage() {
+        Map<Integer, Integer[]> scoreMap = new HashMap<>();
+
+        for(Score score : scoreList){
+            Integer[] defaultValue = {0, 0};
+            Integer[] tmp = scoreMap.getOrDefault(score.getSubNo(), defaultValue);
+            tmp[1]++;
+            tmp[0] += score.getScore();
+            scoreMap.put(score.getSubNo(), tmp);
+        }
+
+        for (Map.Entry<Integer, Integer[]> entry : scoreMap.entrySet()) {
+            Integer key = entry.getKey();
+            Integer[] value = entry.getValue();
+            int avg = value[0] / value[1];
+            char grade;
+
+            if(avg >= 95 && avg <= 100) {
+                grade = 'A';
+            }
+            else if(avg >= 90 && avg <= 94) {
+                grade = 'B';
+            }
+            else if(avg >= 80 && avg <= 89) {
+                grade = 'C';
+            }
+            else if(avg >= 70 && avg <= 79) {
+                grade = 'D';
+            }
+            else if(avg >= 60 && avg <= 69) {
+                grade = 'F';
+            }
+            else {
+                grade = 'N';
+            }
+            System.out.println("===================");
+            System.out.println("과목 번호 : " + key + "\n평균 등급 : " + grade);
+            System.out.println("===================");
         }
     }
 
