@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public enum ManagementAction {
     ADD_STUDENT(1, "수강생 정보 등록", ActionType.STUDENT, managementApplication -> {
-        System.out.println("INQUIRY_STUDENT");
+        System.out.println("ADD_STUDENT");
     }),
     INQUIRY_STUDENT(2, "수강생 조회", ActionType.STUDENT, managementApplication -> {
         System.out.println("INQUIRY_STUDENT");
