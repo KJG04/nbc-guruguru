@@ -3,9 +3,9 @@ import java.util.List;
 public class Student {
     private int stdNo;
     private String name;
-    private List<String> subList;
+    private List<Subject> subList;
 
-    public Student(int stdNo, String name, List<String> subList) {
+    public Student(int stdNo, String name, List<Subject> subList) {
         this.stdNo = stdNo;
         this.name = name;
         this.subList = subList;
@@ -19,7 +19,7 @@ public class Student {
         return name;
     }
 
-    public List<String> getSubList() {
+    public List<Subject> getSubList() {
         return subList;
     }
 
@@ -31,7 +31,7 @@ public class Student {
         this.name = name;
     }
 
-    public void setSubList(List<String> subList) {
+    public void setSubList(List<Subject> subList) {
         this.subList = subList;
     }
 }
