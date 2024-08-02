@@ -18,6 +18,7 @@ public class AddScore implements ManagementActionFunction {
         sc.nextLine();
 
         Score subScore = new Score(subNo, stdNo, term, score);
+        
         ScoreManage.addScore(subScore);
     }
 }
