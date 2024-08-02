@@ -11,8 +11,7 @@ public class Score {
         this.subNo = subNo;
         this.stdNo = stdNo;
         this.term = term;
-        this.score = score;
-        setGrade(score);
+        setScore(score);
     }
 
 
@@ -76,6 +75,9 @@ public class Score {
         }
         else if(score >= 60 && score <= 69) {
             this.grade = 'F';
+        }
+        else {
+            this.grade = 'N';
         }
     }
 }

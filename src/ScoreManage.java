@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreManage {
-    static List<Score> scoreList = new ArrayList<>();
+    public static List<Score> scoreList = new ArrayList<>();
     public static void addScore(Score score){
         if(!scoreList.contains(score)) scoreList.add(score);
         // 과목번호, 학생번호, 회차가 전부 동일한게 존재하면 패스
@@ -23,7 +23,14 @@ public class ScoreManage {
         //과목별 평균 등급 조회
         //특정 상태 수강생 필수 과목 평균 등급 조회
         for(Score score : scoreList){
-            System.out.println(score.getStdNo() + " : " + score.getScore());
+            System.out.println("===================\n"
+                    + "학생 고유 번호 : " + score.getStdNo()
+                    + "\n과목 고유 번호 : " + score.getSubNo()
+                    + "\n회차 : " + score.getTerm()
+                    + "\n점수 : " + score.getScore()
+                    + "\n등급 : " + score.getGrade()
+                    + "\n==================="
+            );
         }
     }
 
