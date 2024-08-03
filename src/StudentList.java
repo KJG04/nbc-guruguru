@@ -14,7 +14,10 @@ public class StudentList implements ManagementActionFunction{
         for (Map.Entry<Integer, Object> entry : studentMap.entrySet()) {
             Integer studentId = entry.getKey();
             Student student = (Student) entry.getValue();
-            System.out.println("ID: " + student.getStdNo() + ", Name: " + student.getName());
+            System.out.println("ID: " + student.getStdNo() + "\n" +
+                                "Name: " + student.getName() + "\n" +
+                                "state: " + student.getState() + "\n" +
+                                "subjects: " + student.getSubList() + "\n");
         }
     }
 }
