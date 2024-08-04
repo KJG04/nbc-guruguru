@@ -19,6 +19,6 @@ public class AddScore implements ManagementActionFunction {
 
         Score subScore = new Score(subNo, stdNo, term, score);
 
-        ScoreManage.addScore(subScore);
+        managementApplication.scoreManage.addScore(subScore);
     }
 }

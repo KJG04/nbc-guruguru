@@ -8,11 +8,13 @@ public class ManagementApplication {
 
     private final Map<Integer, Object> studentMap;
     private final Map<ScoreKey, Object> scoreMap;
+    public ScoreManage scoreManage;
 
     public ManagementApplication() {
         this.scanner = new Scanner(System.in);
         this.studentMap = new HashMap<>();
         this.scoreMap = new HashMap<>();
+        this.scoreManage = new ScoreManage();
     }
 
     public Map<Integer, Object> getStudentMap() {

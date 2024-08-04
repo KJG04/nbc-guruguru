@@ -21,6 +21,6 @@ public class ReplaceScore implements ManagementActionFunction {
         int score = sc.nextInt();
         sc.nextLine();
         Score scoreSub = new Score(stdNo, subNo, term, score);
-        ScoreManage.replaceScore(scoreSub);
+        managementApplication.scoreManage.replaceScore(scoreSub);
     }
 }
