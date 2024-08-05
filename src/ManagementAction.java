@@ -3,9 +3,7 @@ import java.util.Arrays;
 public enum ManagementAction {
     ADD_STUDENT(1, "수강생 정보 등록", ActionType.STUDENT, new AddStudent()),
     INQUIRY_STUDENT(2, "수강생 조회", ActionType.STUDENT, new StudentList()),
-    INQUIRY_STUDENT_BY_STATUS(3, "특정 상태의 수강생을 조회", ActionType.STUDENT, managementApplication -> {
-        System.out.println("INQUIRY_STUDENT_BY_STATUS");
-    }),
+    INQUIRY_STUDENT_BY_STATUS(3, "특정 상태의 수강생을 조회", ActionType.STUDENT, new InquiryStudentByStatus()),
     DELETE_STUDENT(4, "수강생 삭제", ActionType.STUDENT, new DeleteStudent()),
     EDIT_STUDENT(5, "수강생 정보 변경", ActionType.STUDENT, new EditStudent()),
 

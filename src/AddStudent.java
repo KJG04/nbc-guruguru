@@ -5,56 +5,77 @@ public class AddStudent implements ManagementActionFunction{
     public void action(ManagementApplication managementApplication){
 
         Scanner scanner = managementApplication.getScanner();
+        Map<Integer, Object> studentMap = managementApplication.getStudentMap();
 
-        System.out.print("수강생의 고유번호를 입력해주세요 : ");
-        int stdNo = scanner.nextInt();
-        scanner.nextLine();
+        // 고유번호 입력 및 중복 검사
+        int stdNo;
+        while (true) {
+            System.out.print("수강생의 고유번호를 입력해주세요 : ");
+            stdNo = scanner.nextInt();
+            scanner.nextLine();
+
+            if (studentMap.containsKey(stdNo)) {
+                System.out.println(stdNo + "라는 수강생 번호는 이미 존재합니다.");
+            } else {
+                break;
+            }
+        }
         System.out.print("이름을 입력하세요 : ");
         String stdName = scanner.nextLine();
 
         int maxRequiredCount = 0;
         int maxElectiveCount = 0;
 
-        List<Subject> subjects = new ArrayList<>();
+        // 필수과목과 선택과목 중복 허동 제거
+        Set<Subject> subjects = new HashSet<>();
 
         System.out.println("필수과목을 입력해주세요(최소 3개)");
         while (maxRequiredCount < 3) {
-            System.out.print("과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
+            System.out.print("필수 과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
             int subNo = scanner.nextInt();
             scanner.nextLine();
+
             if (subNo == -1) {
                 if (maxRequiredCount < 3) {
                     System.out.println("필수 과목을 3개 이상 입력해야합니다.");
-                    return;
                 }
                 break;
             }
 
             Subject subject = Subject.getSubjectById(subNo);
             if (subject.isSubType()) {
-                subjects.add(subject);
-                maxRequiredCount++;
+                if (subjects.add(subject)) {
+                    maxRequiredCount++;
+                } else {
+                    System.out.println("입력한 과목 번호는 이미 저장된 과목입니다.");
+                }
+            } else {
+                System.out.println("입력한 과목은 선택과목입니다. 다시 입력해주세요.");
             }
         }
 
-        System.out.println("선택과목을 입력해주세요(최소 3개)");
+        System.out.println("선택과목을 입력해주세요(최소 2개)");
         while (maxElectiveCount < 2) {
-            System.out.print("과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
+            System.out.print("선택 과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
             int subNo = scanner.nextInt();
             scanner.nextLine();
 
             if (subNo == -1) {
                 if (maxElectiveCount < 2) {
                     System.out.println("선수 과목을 2개 이상 입력해야합니다.");
-                    return;
                 }
                 break;
             }
 
             Subject subject = Subject.getSubjectById(subNo);
             if (!subject.isSubType()) {
-                subjects.add(subject);
-                maxElectiveCount++;
+                if (subjects.add(subject)) {
+                    maxElectiveCount++;
+                } else {
+                    System.out.println("입력한 과목 번호는 이미 저장된 과목입니다.");
+                }
+            } else {
+                System.out.println("입력한 과목은 필수과목입니다. 다시 입력해주세요.");
             }
         }
 
@@ -64,10 +85,22 @@ public class AddStudent implements ManagementActionFunction{
             return;
         }
 
-        Student student = new Student(stdNo, stdName, subjects);
+        // 상태 입력
+        Status status = null;
+        while (status == null) {
+            System.out.print("상태를 입력해주세요.(GREEN, RED, YELLOW) : ");
+            String statusInput = scanner.nextLine().toUpperCase();
+
+            try {
+                status = Status.valueOf(statusInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println("잘못되 상태 입력하셨습니다. GREEN, RED, YELLOW 중에서 선택해 주세요.");
+            }
+        }
+
+
+        Student student = new Student(stdNo, stdName, new ArrayList<>(subjects), status);
         managementApplication.getStudentMap().put(stdNo, student);
         System.out.println("학생이 성공적으로 등록되었습니다.");
     }
-
-
 }
