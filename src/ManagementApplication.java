@@ -6,7 +6,7 @@ public class ManagementApplication {
 
     private final Scanner scanner;
 
-    private final Map<Integer, Object> studentMap;
+    private final Map<Integer, Student> studentMap;
     private final Map<Integer, Score> scoreMap;
 
     public ManagementApplication() {
@@ -15,7 +15,7 @@ public class ManagementApplication {
         this.scoreMap = new HashMap<>();
     }
 
-    public Map<Integer, Object> getStudentMap() {
+    public Map<Integer, Student> getStudentMap() {
         return studentMap;
     }
 

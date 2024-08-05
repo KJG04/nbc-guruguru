@@ -9,7 +9,7 @@ public class EditStudent implements ManagementActionFunction {
     @Override
     public void action(ManagementApplication managementApplication) {
         Scanner scanner = new Scanner(System.in);
-        Map<Integer, Object> studentMap = managementApplication.getStudentMap();
+        Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
         // 학생 ID 입력 받기
         System.out.print("수정할 수강생의 ID를 입력해주세요 : ");

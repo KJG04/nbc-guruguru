@@ -9,7 +9,7 @@ public class InquiryStudentByStatus implements ManagementActionFunction {
     @Override
     public void action(ManagementApplication managementApplication) {
         Scanner scanner = managementApplication.getScanner();
-        Map<Integer, Object> studentMap = managementApplication.getStudentMap();
+        Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
         Status statusToQuery  = null;
         while (statusToQuery  == null) {
