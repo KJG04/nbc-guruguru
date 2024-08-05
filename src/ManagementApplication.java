@@ -19,10 +19,6 @@ public class ManagementApplication {
         return studentMap;
     }
 
-//    public Map<ScoreKey, Object> getScoreMap() {
-//        return scoreMap;
-//    }
-
     public Scanner getScanner() {
         return scanner;
     }
