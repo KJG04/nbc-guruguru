@@ -6,7 +6,7 @@ public class Student {
     private List<Subject> subList;
     private Status status;
 
-    public Student(int stdNo, String name, List<Subject> subList, Status status) {
+    public Student(int stdNo, String name, List<Subject> subList) {
         this.stdNo = stdNo;
         this.name = name;
         this.subList = subList;
