@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public enum Subject {
 
     Java(1, "Java", true),
@@ -31,5 +33,11 @@ public enum Subject {
 
     public boolean isSubType() {
         return subType;
+    }
+
+    public static Subject getSubjectById(int subId) {
+        Subject[] subjects = Subject.values();
+        return Arrays.stream(Subject.values())
+                .filter(v -> v.subId == subId).findFirst().orElseThrow(() -> new IllegalArgumentException("잘못된 ID를 입력하셨습니다."));
     }
 }

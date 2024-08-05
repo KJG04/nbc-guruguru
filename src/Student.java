@@ -1,14 +1,16 @@
-import java.util.List;
+import java.util.*;
 
 public class Student {
     private int stdNo;
     private String name;
     private List<Subject> subList;
+    private Status status;
 
-    public Student(int stdNo, String name, List<Subject> subList) {
+    public Student(int stdNo, String name, List<Subject> subList, Status status) {
         this.stdNo = stdNo;
         this.name = name;
         this.subList = subList;
+        this.status = status;
     }
 
     public int getStdNo() {
@@ -23,6 +25,10 @@ public class Student {
         return subList;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public void setStdNo(int stdNo) {
         this.stdNo = stdNo;
     }
@@ -33,5 +39,9 @@ public class Student {
 
     public void setSubList(List<Subject> subList) {
         this.subList = subList;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
