@@ -1,6 +1,9 @@
 public class ShowScore implements ManagementActionFunction{
     @Override
     public void action(ManagementApplication managementApplication) {
+        if(managementApplication.getScoreMap().isEmpty()){
+            System.out.println("등록된 점수가 존재하지 않습니다.");
+        }
         for(Score score : managementApplication.getScoreMap().values()){
             System.out.println("===================\n"
                     + "학생 고유 번호 : " + score.getStdNo()
