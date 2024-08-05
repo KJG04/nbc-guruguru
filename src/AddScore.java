@@ -17,8 +17,11 @@ public class AddScore implements ManagementActionFunction {
         int score = sc.nextInt();
         sc.nextLine();
 
-        Score subScore = new Score(subNo, stdNo, term, score);
+        Score subScore = new Score(stdNo, subNo, term, score);
 
-        managementApplication.scoreManage.addScore(subScore);
+        if(!managementApplication.scoreMap.containsKey(subNo)){
+            managementApplication.scoreMap.put(subScore.hashCode(), subScore);
+            System.out.println("점수 등록 성공");
+        }
     }
 }

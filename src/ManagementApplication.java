@@ -7,23 +7,21 @@ public class ManagementApplication {
     private final Scanner scanner;
 
     private final Map<Integer, Object> studentMap;
-    private final Map<ScoreKey, Object> scoreMap;
-    public ScoreManage scoreManage;
+    public Map<Integer, Score> scoreMap;
 
     public ManagementApplication() {
         this.scanner = new Scanner(System.in);
         this.studentMap = new HashMap<>();
         this.scoreMap = new HashMap<>();
-        this.scoreManage = new ScoreManage();
     }
 
     public Map<Integer, Object> getStudentMap() {
         return studentMap;
     }
 
-    public Map<ScoreKey, Object> getScoreMap() {
-        return scoreMap;
-    }
+//    public Map<ScoreKey, Object> getScoreMap() {
+//        return scoreMap;
+//    }
 
     public Scanner getScanner() {
         return scanner;

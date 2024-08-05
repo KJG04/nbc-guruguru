@@ -7,7 +7,7 @@ public class Score {
     private int score;
     private char grade;
 
-    public Score(int subNo, int stdNo, int term, int score) {
+    public Score(int stdNo, int subNo, int term, int score) {
         this.subNo = subNo;
         this.stdNo = stdNo;
         this.term = term;
