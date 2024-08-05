@@ -37,6 +37,11 @@ public class ShowGradeOrderByStatus implements ManagementActionFunction {
                 cnt++;
             }
 
+            if(cnt == 0) {
+                System.out.println("[해당 상태의 수강상에 대한 점수정보가 존재하지 않습니다.]");
+                break;
+            }
+
             System.out.println(status + " 수강생의 필수과목 평균 등급 : " + GradeByScore.gradeByScore(1, sum/cnt));
             break;
         }
