@@ -33,7 +33,7 @@ public class ReplaceScore implements ManagementActionFunction {
             int term = sc.nextInt();
             sc.nextLine();
 
-            if(!managementApplication.getScoreMap().containsKey(new Score(stdNo, subNo, term, 0))) {
+            if(!managementApplication.getScoreMap().containsKey(new Score(stdNo, subNo, term, 0).hashCode())) {
                 System.out.println("[해당 회차로 등록된 점수가 존재하지 않습니다.]");
                 continue;
             }

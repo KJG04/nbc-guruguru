@@ -11,9 +11,7 @@ public enum ManagementAction {
     INQUIRY_SCORE(2, "점수 조회", ActionType.SCORE, new ShowScore()),
     EDIT_SCORE(3, "점수 수정", ActionType.SCORE, new ReplaceScore()),
     INQUIRY_AVG_SCORE_BY_SUBJECT(4, "과목별 평균 점수 조회", ActionType.SCORE, new ShowScoreAverage()),
-    INQUIRY_REQUIRED_SUBJECT_AVG_SCORE_BY_STATUS(5, "특정 상태 수강생들의 필수 과목 평균 등급을 조회", ActionType.SCORE, managementApplication -> {
-        System.out.println("INQUIRY_REQUIRED_SUBJECT_AVG_SCORE_BY_STATUS");
-    });
+    INQUIRY_REQUIRED_SUBJECT_AVG_SCORE_BY_STATUS(5, "특정 상태 수강생들의 필수 과목 평균 등급을 조회", ActionType.SCORE, new ShowGradeOrderByStatus());
 
     public enum ActionType {
         STUDENT, SCORE;
