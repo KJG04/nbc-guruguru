@@ -1,12 +1,17 @@
 import java.util.Map;
 
 public class StudentList implements ManagementActionFunction{
+    // Reset color
+    public static final String ANSI_RESET = "\u001B[0m";
+    // Red color
+    public static final String ANSI_RED = "\u001B[31m";
+
     @Override
     public void action(ManagementApplication managementApplication) {
         Map<Integer, Object> studentMap = managementApplication.getStudentMap();
 
         if (studentMap.isEmpty()) {
-            System.out.println("등록된 수강생이 없습니다.");
+            System.out.println(ANSI_RED + "등록된 수강생이 없습니다." + ANSI_RESET);
             return;
         }
 
@@ -14,10 +19,10 @@ public class StudentList implements ManagementActionFunction{
         for (Map.Entry<Integer, Object> entry : studentMap.entrySet()) {
             Integer studentId = entry.getKey();
             Student student = (Student) entry.getValue();
-            System.out.println("ID: " + student.getStdNo() + "\n" +
-                    "Name: " + student.getName() + "\n" +
-                    "state: " + student.getStatus() + "\n" +
-                    "subjects: " + student.getSubList() + "\n");
+            System.out.println("학생 고유 번호: " + student.getStdNo() + "\n" +
+                    "이름: " + student.getName() + "\n" +
+                    "상태: " + student.getStatus() + "\n" +
+                    "과목: " + student.getSubList() + "\n");
         }
     }
 }

@@ -1,6 +1,11 @@
 import java.util.*;
 
 public class AddStudent implements ManagementActionFunction{
+    // Reset color
+    public static final String ANSI_RESET = "\u001B[0m";
+    // Red color
+    public static final String ANSI_RED = "\u001B[31m";
+
     @Override
     public void action(ManagementApplication managementApplication){
 
@@ -15,7 +20,7 @@ public class AddStudent implements ManagementActionFunction{
             scanner.nextLine();
 
             if (studentMap.containsKey(stdNo)) {
-                System.out.println(stdNo + "라는 수강생 번호는 이미 존재합니다.");
+                System.out.println(ANSI_RED + stdNo + "라는 수강생 번호는 이미 존재합니다." + ANSI_RESET);
             } else {
                 break;
             }
@@ -29,15 +34,17 @@ public class AddStudent implements ManagementActionFunction{
         // 필수과목과 선택과목 중복 허동 제거
         Set<Subject> subjects = new HashSet<>();
 
+        // 필수 과목 입력받기
         System.out.println("필수과목을 입력해주세요(최소 3개)");
-        while (maxRequiredCount < 3) {
+        while (maxRequiredCount < 5) {
             System.out.print("필수 과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
             int subNo = scanner.nextInt();
             scanner.nextLine();
 
             if (subNo == -1) {
                 if (maxRequiredCount < 3) {
-                    System.out.println("필수 과목을 3개 이상 입력해야합니다.");
+                    System.out.println(ANSI_RED + "필수 과목을 3개 이상 입력해야합니다." + ANSI_RESET);
+                    continue;
                 }
                 break;
             }
@@ -47,22 +54,24 @@ public class AddStudent implements ManagementActionFunction{
                 if (subjects.add(subject)) {
                     maxRequiredCount++;
                 } else {
-                    System.out.println("입력한 과목 번호는 이미 저장된 과목입니다.");
+                    System.out.println(ANSI_RED + "입력한 과목 번호는 이미 저장된 과목입니다." + ANSI_RESET);
                 }
             } else {
-                System.out.println("입력한 과목은 선택과목입니다. 다시 입력해주세요.");
+                System.out.println(ANSI_RED + "입력한 과목은 선택과목입니다. 다시 입력해주세요." + ANSI_RESET);
             }
         }
 
+        // 선택 과목 입력받기
         System.out.println("선택과목을 입력해주세요(최소 2개)");
-        while (maxElectiveCount < 2) {
+        while (maxElectiveCount < 4) {
             System.out.print("선택 과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
             int subNo = scanner.nextInt();
             scanner.nextLine();
 
             if (subNo == -1) {
                 if (maxElectiveCount < 2) {
-                    System.out.println("선수 과목을 2개 이상 입력해야합니다.");
+                    System.out.println(ANSI_RED + "선수 과목을 2개 이상 입력해야합니다." + ANSI_RESET);
+                    continue;
                 }
                 break;
             }
@@ -72,17 +81,11 @@ public class AddStudent implements ManagementActionFunction{
                 if (subjects.add(subject)) {
                     maxElectiveCount++;
                 } else {
-                    System.out.println("입력한 과목 번호는 이미 저장된 과목입니다.");
+                    System.out.println(ANSI_RED + "입력한 과목 번호는 이미 저장된 과목입니다." + ANSI_RESET);
                 }
             } else {
-                System.out.println("입력한 과목은 필수과목입니다. 다시 입력해주세요.");
+                System.out.println(ANSI_RED + "입력한 과목은 필수과목입니다. 다시 입력해주세요." + ANSI_RESET);
             }
-        }
-
-        // 필수 과목 3개, 선택 과목 2개를 최소 가지고 있는 확인
-        if (maxRequiredCount < 3 || maxElectiveCount < 2) {
-            System.out.println("등록 실패: 필수 과목 3개와 선택 과목 2개 이상의 조건을 만족해야 합니다.");
-            return;
         }
 
         // 상태 입력
@@ -94,7 +97,7 @@ public class AddStudent implements ManagementActionFunction{
             try {
                 status = Status.valueOf(statusInput);
             } catch (IllegalArgumentException e) {
-                System.out.println("잘못되 상태 입력하셨습니다. GREEN, RED, YELLOW 중에서 선택해 주세요.");
+                System.out.println(ANSI_RED + "잘못된 상태를 입력하셨습니다. GREEN, RED, YELLOW 중에서 선택해 주세요." + ANSI_RESET);
             }
         }
 

@@ -1,6 +1,10 @@
 import java.util.*;
 
 public class DeleteStudent implements ManagementActionFunction {
+    // Reset color
+    public static final String ANSI_RESET = "\u001B[0m";
+    // Red color
+    public static final String ANSI_RED = "\u001B[31m";
 
     @Override
     public void action(ManagementApplication managementApplication) {
@@ -18,7 +22,7 @@ public class DeleteStudent implements ManagementActionFunction {
         if (removedStudent != null) {
             System.out.println("수강생의 ID가 " + idToDelete + "인 정보가 삭제되었습니다..");
         } else {
-            System.out.println("ID가 " + idToDelete + "인 수강생의 정보가 없습니다.");
+            System.out.println(ANSI_RED + "ID가 " + idToDelete + "인 수강생의 정보가 없습니다." + ANSI_RESET);
         }
     }
 

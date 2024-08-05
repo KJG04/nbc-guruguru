@@ -1,6 +1,10 @@
 import java.util.*;
 
 public class EditStudent implements ManagementActionFunction {
+    // Reset color
+    public static final String ANSI_RESET = "\u001B[0m";
+    // Red color
+    public static final String ANSI_RED = "\u001B[31m";
 
     @Override
     public void action(ManagementApplication managementApplication) {
@@ -38,18 +42,18 @@ public class EditStudent implements ManagementActionFunction {
                         try {
                             newstatus = Status.valueOf(statusInput);
                         } catch (IllegalArgumentException e) {
-                            System.out.println("잘못되 상태 입력하셨습니다. GREEN, RED, YELLOW 중에서 선택해 주세요.");
+                            System.out.println(ANSI_RED + "잘못된 상태를 입력하셨습니다. GREEN, RED, YELLOW 중에서 선택해 주세요." + ANSI_RESET);
                         }
                     }
                     student.setStatus(newstatus);
                     System.out.println("수강생인 "+ student.getName() + "의 상태가 수정되었습니다 : " + newstatus);
                     break;
                 default:
-                    System.out.println("잘못된 선택하셨습니다. 1 또는 2를 입력해주세요.");
+                    System.out.println(ANSI_RED + "잘못된 선택하셨습니다. 1 또는 2를 입력해주세요." + ANSI_RESET);
 
             }
         } else {
-            System.out.println("ID가 " + idToChange + "인 수강생의 정보가 없습니다.");
+            System.out.println(ANSI_RED + "ID가 " + idToChange + "인 수강생의 정보가 없습니다." + ANSI_RESET);
         }
     }
 }
