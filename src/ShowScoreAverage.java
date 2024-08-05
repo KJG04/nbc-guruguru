@@ -6,7 +6,7 @@ public class ShowScoreAverage implements ManagementActionFunction {
     public void action(ManagementApplication managementApplication) {
         Map<Integer, Integer[]> avgScoreMap = new HashMap<>();
 
-        for(Score score : managementApplication.scoreMap.values()){
+        for(Score score : managementApplication.getScoreMap().values()){
             Integer[] defaultValue = {0, 0};
             Integer[] tmp = avgScoreMap.getOrDefault(score.getSubNo(), defaultValue);
             tmp[1]++;

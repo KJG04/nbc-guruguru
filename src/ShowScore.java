@@ -1,7 +1,7 @@
 public class ShowScore implements ManagementActionFunction{
     @Override
     public void action(ManagementApplication managementApplication) {
-        for(Score score : managementApplication.scoreMap.values()){
+        for(Score score : managementApplication.getScoreMap().values()){
             System.out.println("===================\n"
                     + "학생 고유 번호 : " + score.getStdNo()
                     + "\n과목 고유 번호 : " + score.getSubNo()
