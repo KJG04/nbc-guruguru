@@ -38,7 +38,7 @@ public class ShowGradeOrderByStatus implements ManagementActionFunction {
             }
 
             if(cnt == 0) {
-                System.out.println("[해당 상태의 수강상에 대한 점수정보가 존재하지 않습니다.]");
+                System.out.println("[해당 상태의 수강생에 대한 점수정보가 존재하지 않습니다.]");
                 break;
             }
 
