@@ -17,7 +17,10 @@ public class EditStudent implements ManagementActionFunction {
         scanner.nextLine();
 
         Student student = (Student) studentMap.get(idToChange);
-        if (student != null) {
+        if (student == null) {
+            System.out.println(ANSI_RED + "ID가 " + idToChange + "인 수강생의 정보가 없습니다." + ANSI_RESET);
+            return;
+        } else {
             System.out.println("수정할 항목을 입력해주세요.");
             System.out.println("1. 이름");
             System.out.println("2. 상태");
@@ -52,8 +55,6 @@ public class EditStudent implements ManagementActionFunction {
                     System.out.println(ANSI_RED + "잘못된 선택하셨습니다. 1 또는 2를 입력해주세요." + ANSI_RESET);
 
             }
-        } else {
-            System.out.println(ANSI_RED + "ID가 " + idToChange + "인 수강생의 정보가 없습니다." + ANSI_RESET);
         }
     }
 }
