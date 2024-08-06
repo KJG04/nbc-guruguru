@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Map;
+import java.util.Scanner;
 
 public class EditStudent implements ManagementActionFunction {
     // Reset color
@@ -8,7 +9,7 @@ public class EditStudent implements ManagementActionFunction {
 
     @Override
     public void action(ManagementApplication managementApplication) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = managementApplication.getScanner();
         Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
         // 학생 ID 입력 받기
@@ -49,7 +50,7 @@ public class EditStudent implements ManagementActionFunction {
                         }
                     }
                     student.setStatus(newstatus);
-                    System.out.println("수강생인 "+ student.getName() + "의 상태가 수정되었습니다 : " + newstatus);
+                    System.out.println("수강생인 " + student.getName() + "의 상태가 수정되었습니다 : " + newstatus);
                     break;
                 default:
                     System.out.println(ANSI_RED + "잘못된 선택하셨습니다. 1 또는 2를 입력해주세요." + ANSI_RESET);
