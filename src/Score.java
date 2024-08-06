@@ -18,12 +18,12 @@ public class Score {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Score sc)) return false;
-        return sc.getSubNo() == this.subNo && sc.getStdNo() == this.stdNo && sc.getTerm() == this.term;
+        return sc.getSubNo() == this.subNo && sc.getStdNo() == this.stdNo && sc.getTerm() == this.term && sc.getScore() == this.score;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subNo, stdNo, term);
+        return Objects.hash(subNo, stdNo, term, score);
     }
 
 
