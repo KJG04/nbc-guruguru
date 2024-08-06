@@ -8,7 +8,7 @@ public class DeleteStudent implements ManagementActionFunction {
 
     @Override
     public void action(ManagementApplication managementApplication) {
-        Map<Integer, Object> studentMap = managementApplication.getStudentMap();
+        Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
         Scanner scanner = new Scanner(System.in);
 

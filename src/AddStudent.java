@@ -10,7 +10,7 @@ public class AddStudent implements ManagementActionFunction{
     public void action(ManagementApplication managementApplication){
 
         Scanner scanner = managementApplication.getScanner();
-        Map<Integer, Object> studentMap = managementApplication.getStudentMap();
+        Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
         // 고유번호 입력 및 중복 검사
         int stdNo;
