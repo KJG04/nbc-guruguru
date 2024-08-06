@@ -1,28 +1,27 @@
 import java.util.Arrays;
 
 public enum Subject {
+    Java(1, "Java", true, CalculateRequiredSubjectGrade::getGrade),
+    ObjectOriented(2, "객체지향", true, CalculateRequiredSubjectGrade::getGrade),
+    Spring(3, "Spring", true, CalculateRequiredSubjectGrade::getGrade),
+    JPA(4, "JPA", true, CalculateRequiredSubjectGrade::getGrade),
+    MySQL(5, "MySQL", true, CalculateRequiredSubjectGrade::getGrade),
 
-    Java(1, "Java", true, 1),
-    ObjectOriented(2, "객체지향", true, 1),
-    Spring(3, "Spring", true, 1),
-    JPA(4, "JPA", true, 1),
-    MySQL(5, "MySQL", true, 1),
-
-    DesignPattern(6, "디자인 패턴", false, 2),
-    SpringSecurity(7, "Spring Security", false,2),
-    Redis(8, "Redis", false,2),
-    MongoDB(9, "MongoDB", false,2);
+    DesignPattern(6, "디자인 패턴", false, CalculateRequiredSubjectGrade::getGrade),
+    SpringSecurity(7, "Spring Security", false, CalculateRequiredSubjectGrade::getGrade),
+    Redis(8, "Redis", false, CalculateRequiredSubjectGrade::getGrade),
+    MongoDB(9, "MongoDB", false, CalculateRequiredSubjectGrade::getGrade);
 
     private final int subId;
     private final String subName;
     private final boolean subType;
-    private final int gradeType;
+    private final CalculateGrade calculateGrade;
 
-    Subject(int subId, String subName, boolean subType, int GradeType) {
+    Subject(int subId, String subName, boolean subType, CalculateGrade calculateGrade) {
         this.subId = subId;
         this.subName = subName;
         this.subType = subType;
-        this.gradeType = GradeByCategory.gradeByCategory(this.subId);
+        this.calculateGrade = calculateGrade;
     }
 
     public int getSubId() {
@@ -37,7 +36,9 @@ public enum Subject {
         return subType;
     }
 
-    public int getGradeType() {return gradeType;}
+    public char calculateGrade(int score) {
+        return this.calculateGrade.getGrade(score);
+    }
 
     public static Subject getSubjectById(int subId) {
         Subject[] subjects = Subject.values();

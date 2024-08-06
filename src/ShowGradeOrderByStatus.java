@@ -42,7 +42,7 @@ public class ShowGradeOrderByStatus implements ManagementActionFunction {
                 break;
             }
 
-            System.out.println(status + " 수강생의 필수과목 평균 등급 : " + GradeByCategory.gradeByScore(1, sum/cnt));
+            System.out.println(status + " 수강생의 필수과목 평균 등급 : " + GradeByScore.gradeByScore(1, sum/cnt));
             break;
         }
     }
