@@ -7,10 +7,10 @@ public enum Subject {
     JPA(4, "JPA", true, CalculateRequiredSubjectGrade::getGrade),
     MySQL(5, "MySQL", true, CalculateRequiredSubjectGrade::getGrade),
 
-    DesignPattern(6, "디자인 패턴", false, CalculateRequiredSubjectGrade::getGrade),
-    SpringSecurity(7, "Spring Security", false, CalculateRequiredSubjectGrade::getGrade),
-    Redis(8, "Redis", false, CalculateRequiredSubjectGrade::getGrade),
-    MongoDB(9, "MongoDB", false, CalculateRequiredSubjectGrade::getGrade);
+    DesignPattern(6, "디자인 패턴", false, CalculateSelectedSubjectGrade::getGrade),
+    SpringSecurity(7, "Spring Security", false, CalculateSelectedSubjectGrade::getGrade),
+    Redis(8, "Redis", false, CalculateSelectedSubjectGrade::getGrade),
+    MongoDB(9, "MongoDB", false, CalculateSelectedSubjectGrade::getGrade);
 
     private final int subId;
     private final String subName;

@@ -23,7 +23,7 @@ public class Score {
 
     @Override
     public int hashCode() {
-        return Objects.hash(subNo, stdNo, term, score);
+        return Objects.hash(subNo, stdNo, term);
     }
 
 

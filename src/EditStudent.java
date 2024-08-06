@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -13,9 +14,18 @@ public class EditStudent implements ManagementActionFunction {
         Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
         // 학생 ID 입력 받기
-        System.out.print("수정할 수강생의 ID를 입력해주세요 : ");
-        int idToChange = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("\n수정할 수강생의 ID를 입력해주세요 : ");
+        int idToChange;
+        while(true) {
+            try {
+                idToChange = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("[숫자를 입력해주세요.]");
+                scanner.nextLine();
+            }
+        }
 
         Student student = (Student) studentMap.get(idToChange);
         if (student == null) {
@@ -25,8 +35,18 @@ public class EditStudent implements ManagementActionFunction {
             System.out.println("수정할 항목을 입력해주세요.");
             System.out.println("1. 이름");
             System.out.println("2. 상태");
-            int choice = scanner.nextInt();
-            scanner.nextLine();     // 개행 문자 처리
+            int choice;    // 개행 문자 처리
+
+            while(true) {
+                try {
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("[숫자를 입력해주세요.]");
+                    scanner.nextLine();
+                }
+            }
 
             switch (choice) {
                 case 1:

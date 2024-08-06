@@ -13,7 +13,7 @@ public class InquiryStudentByStatus implements ManagementActionFunction {
 
         Status statusToQuery  = null;
         while (statusToQuery  == null) {
-            System.out.print("조회하고자 할 상태를 입력해주세요(GREEN, RED, YELLOW) : ");
+            System.out.print("\n조회하고자 할 상태를 입력해주세요(GREEN, RED, YELLOW) : ");
             String statusInput = scanner.nextLine().toUpperCase();
 
             try {

@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -14,8 +15,19 @@ public class DeleteStudent implements ManagementActionFunction {
         Scanner scanner = managementApplication.getScanner();
 
         // 학생 ID 입력 받기
-        System.out.print("삭제할 수강생의 ID를 입력해주세요 : ");
-        int idToDelete = scanner.nextInt();
+        System.out.print("\n삭제할 수강생의 ID를 입력해주세요 : ");
+        int idToDelete;
+
+        while(true) {
+            try {
+                idToDelete = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("[숫자를 입력해주세요.]");
+                scanner.nextLine();
+            }
+        }
 
         // 학생 삭제
         Student removedStudent = (Student) studentMap.remove(idToDelete);

@@ -9,16 +9,24 @@ public class AddStudent implements ManagementActionFunction{
     @Override
     public void action(ManagementApplication managementApplication){
 
-        Scanner scanner = managementApplication.getScanner();
+        Scanner sc = managementApplication.getScanner();
         Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
         // 고유번호 입력 및 중복 검사
         int stdNo;
         while (true) {
-            System.out.print("수강생의 고유번호를 입력해주세요 : ");
-            stdNo = scanner.nextInt();
-            scanner.nextLine();
+            System.out.print("\n수강생의 고유번호를 입력해주세요 : ");
 
+            while(true) {
+                try {
+                    stdNo = sc.nextInt();
+                    sc.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("[번호를 입력해주세요.]");
+                    sc.nextLine();
+                }
+            }
             if (studentMap.containsKey(stdNo)) {
                 System.out.println(ANSI_RED + stdNo + "라는 수강생 번호는 이미 존재합니다." + ANSI_RESET);
             } else {
@@ -26,7 +34,7 @@ public class AddStudent implements ManagementActionFunction{
             }
         }
         System.out.print("이름을 입력하세요 : ");
-        String stdName = scanner.nextLine();
+        String stdName = sc.nextLine();
 
         int maxRequiredCount = 0;
         int maxElectiveCount = 0;
@@ -36,10 +44,25 @@ public class AddStudent implements ManagementActionFunction{
 
         // 필수 과목 입력받기
         System.out.println("필수과목을 입력해주세요(최소 3개)");
+        System.out.println("==================");
+        for(int i = 0; i< Arrays.stream(Subject.values()).filter(subject -> subject.isSubType()).count(); i++){
+            System.out.println((Subject.values()[i].getSubId() + ". " + Subject.values()[i].name()));
+        }
+        System.out.println("==================");
+
         while (maxRequiredCount < 5) {
             System.out.print("필수 과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
-            int subNo = scanner.nextInt();
-            scanner.nextLine();
+            int subNo;
+            while (true) {
+                try {
+                    subNo = sc.nextInt();
+                    sc.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("[숫자를 입력해주세요.]");
+                    sc.nextLine();
+                }
+            }
 
             if (subNo == -1) {
                 if (maxRequiredCount < 3) {
@@ -63,10 +86,24 @@ public class AddStudent implements ManagementActionFunction{
 
         // 선택 과목 입력받기
         System.out.println("선택과목을 입력해주세요(최소 2개)");
+        System.out.println("==================");
+        for(int i = (int)Arrays.stream(Subject.values()).filter(subject -> subject.isSubType()).count(); i< Arrays.stream(Subject.values()).count(); i++){
+            System.out.println((Subject.values()[i].getSubId() + ". " + Subject.values()[i].name()));
+        }
+        System.out.println("==================");
         while (maxElectiveCount < 4) {
             System.out.print("선택 과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
-            int subNo = scanner.nextInt();
-            scanner.nextLine();
+            int subNo;
+            while (true) {
+                try {
+                    subNo = sc.nextInt();
+                    sc.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("[숫자를 입력해주세요.]");
+                    sc.nextLine();
+                }
+            }
 
             if (subNo == -1) {
                 if (maxElectiveCount < 2) {
@@ -92,7 +129,7 @@ public class AddStudent implements ManagementActionFunction{
         Status status = null;
         while (status == null) {
             System.out.print("상태를 입력해주세요.(GREEN, RED, YELLOW) : ");
-            String statusInput = scanner.nextLine().toUpperCase();
+            String statusInput = sc.nextLine().toUpperCase();
 
             try {
                 status = Status.valueOf(statusInput);

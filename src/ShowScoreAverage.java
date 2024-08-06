@@ -7,7 +7,7 @@ public class ShowScoreAverage implements ManagementActionFunction {
         Map<Integer, Integer[]> avgScoreMap = new HashMap<>();
 
         if(managementApplication.getScoreMap().isEmpty()){
-            System.out.println("등록된 점수가 존재하지 않습니다.");
+            System.out.println("\n등록된 점수가 존재하지 않습니다.");
         }
 
         for(Score score : managementApplication.getScoreMap().values()){
@@ -23,8 +23,8 @@ public class ShowScoreAverage implements ManagementActionFunction {
             Integer[] value = entry.getValue();
             int avg = value[0] / value[1];
 
-            System.out.println("===================");
-            System.out.println("과목 번호 : " + key + "\n평균 등급 : " + GradeByScore.gradeByScore(key, avg));
+            System.out.println("\n===================");
+            System.out.println("과목 번호 : " + key + "\n평균 등급 : " + Subject.getSubjectById(key).calculateGrade(avg));
             System.out.println("===================");
         }
     }

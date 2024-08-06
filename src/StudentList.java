@@ -10,6 +10,8 @@ public class StudentList implements ManagementActionFunction{
     public void action(ManagementApplication managementApplication) {
         Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
+        System.out.println(" ");
+
         if (studentMap.isEmpty()) {
             System.out.println(ANSI_RED + "등록된 수강생이 없습니다." + ANSI_RESET);
             return;
