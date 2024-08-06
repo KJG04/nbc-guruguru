@@ -12,7 +12,7 @@ public class Score {
         this.stdNo = stdNo;
         this.term = term;
         this.score = score;
-        this.grade = GradeByScore.gradeByScore(subNo, score);
+        this.grade = GradeByCategory.gradeByScore(Subject.getSubjectById(subNo).getGradeType(), score);
     }
 
     @Override
