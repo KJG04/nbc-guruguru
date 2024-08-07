@@ -1,23 +1,28 @@
 import java.util.Arrays;
 
 public enum Subject {
-    Java(1, "Java", true, CalculateRequiredSubjectGrade::getGrade),
-    ObjectOriented(2, "객체지향", true, CalculateRequiredSubjectGrade::getGrade),
-    Spring(3, "Spring", true, CalculateRequiredSubjectGrade::getGrade),
-    JPA(4, "JPA", true, CalculateRequiredSubjectGrade::getGrade),
-    MySQL(5, "MySQL", true, CalculateRequiredSubjectGrade::getGrade),
+    Java(1, "Java", SubjectType.REQUIRED, CalculateRequiredSubjectGrade::getGrade),
+    ObjectOriented(2, "객체지향", SubjectType.REQUIRED, CalculateRequiredSubjectGrade::getGrade),
+    Spring(3, "Spring", SubjectType.REQUIRED, CalculateRequiredSubjectGrade::getGrade),
+    JPA(4, "JPA", SubjectType.REQUIRED, CalculateRequiredSubjectGrade::getGrade),
+    MySQL(5, "MySQL", SubjectType.REQUIRED, CalculateRequiredSubjectGrade::getGrade),
 
-    DesignPattern(6, "디자인 패턴", false, CalculateSelectedSubjectGrade::getGrade),
-    SpringSecurity(7, "Spring Security", false, CalculateSelectedSubjectGrade::getGrade),
-    Redis(8, "Redis", false, CalculateSelectedSubjectGrade::getGrade),
-    MongoDB(9, "MongoDB", false, CalculateSelectedSubjectGrade::getGrade);
+    DesignPattern(6, "디자인 패턴", SubjectType.OPTIONAL, CalculateSelectedSubjectGrade::getGrade),
+    SpringSecurity(7, "Spring Security", SubjectType.OPTIONAL, CalculateSelectedSubjectGrade::getGrade),
+    Redis(8, "Redis", SubjectType.OPTIONAL, CalculateSelectedSubjectGrade::getGrade),
+    MongoDB(9, "MongoDB", SubjectType.OPTIONAL, CalculateSelectedSubjectGrade::getGrade);
+
+    public enum SubjectType {
+        REQUIRED,
+        OPTIONAL;
+    }
 
     private final int subId;
     private final String subName;
-    private final boolean subType;
+    private final SubjectType subType;
     private final CalculateGrade calculateGrade;
 
-    Subject(int subId, String subName, boolean subType, CalculateGrade calculateGrade) {
+    Subject(int subId, String subName, SubjectType subType, CalculateGrade calculateGrade) {
         this.subId = subId;
         this.subName = subName;
         this.subType = subType;
@@ -32,7 +37,7 @@ public enum Subject {
         return subName;
     }
 
-    public boolean isSubType() {
+    public SubjectType getSubType() {
         return subType;
     }
 

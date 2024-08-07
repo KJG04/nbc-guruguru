@@ -7,7 +7,7 @@ public class ManagementApplication {
     private final Scanner scanner;
 
     private final Map<Integer, Student> studentMap;
-    private final Map<Integer, Score> scoreMap;
+    private final Map<ScoreKey, Score> scoreMap;
 
     public ManagementApplication() {
         this.scanner = new Scanner(System.in);
@@ -19,7 +19,9 @@ public class ManagementApplication {
         return studentMap;
     }
 
-    public Map<Integer, Score> getScoreMap() { return scoreMap; }
+    public Map<ScoreKey, Score> getScoreMap() {
+        return scoreMap;
+    }
 
     public Scanner getScanner() {
         return scanner;

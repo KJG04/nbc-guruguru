@@ -1,102 +1,75 @@
+import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class ReplaceScore implements ManagementActionFunction {
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_RED = "\u001B[31m";
+
     @Override
     public void action(ManagementApplication managementApplication) {
         Scanner sc = managementApplication.getScanner();
-        System.out.println("\n[점수를 수정할 수강생 번호를 입력해주세요.]");
-        System.out.print("학생 고유 번호 : ");
+        System.out.println("\n[수정하기 위해 수강생 고유번호, 과목 고유번호, 회차를 공백으로 구분지어 입력해주세요.]");
 
         int stdNo;
-
-        while(true) {
-            try {
-                stdNo = sc.nextInt();
-                sc.nextLine();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("[번호를 입력해주세요.]");
-                sc.nextLine();
-            }
-        }
-
-        Student student = managementApplication.getStudentMap().get(stdNo);
-
-        if (!Objects.nonNull(student)) {
-            System.out.println("[존재하지 않는 학생입니다.]");
-            return;
-        }
+        int subNo;
+        int term;
 
         while (true) {
-            System.out.println("[점수를 수정할 과목 번호를 입력해주세요.]");
-            System.out.print("과목 고유 번호 : ");
-            int subNo;
-
-            while(true) {
-                try {
-                    subNo = sc.nextInt();
-                    sc.nextLine();
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("[번호를 입력해주세요.]");
-                    sc.nextLine();
-                }
-            }
-            if (!student.getSubList().contains(Subject.getSubjectById(subNo))) {
-                System.out.println("[해당 수강생이 수강하고 있지 않은 과목입니다!]");
+            String input;
+            System.out.print("수강생_고유번호 과목_고유번호 회차: ");
+            try {
+                input = sc.nextLine().trim().replaceAll("\\s+", " ");
+            } catch (NumberFormatException e) {
+                System.out.println(ANSI_RED + "숫자를 입력해주세요." + ANSI_RESET);
                 continue;
             }
 
-            System.out.println("[점수를 수정할 회차를 입력해주세요.]");
-            System.out.print("회차 : ");
-            int term;
-
-            while(true) {
-                try {
-                    term = sc.nextInt();
-                    sc.nextLine();
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("[숫자를 입력해주세요.]");
-                    sc.nextLine();
-                }
-            }
-
-            if (!managementApplication.getScoreMap().containsKey(new Score(stdNo, subNo, term, 0).hashCode())) {
-                System.out.println("[해당 회차로 등록된 점수가 존재하지 않습니다.]");
+            Integer[] inputNums = Arrays.stream(input.split(" ")).map(Integer::parseInt).toArray(Integer[]::new);
+            if (inputNums.length != 3) {
+                System.out.println(ANSI_RED + "숫자 3개를 입력해주세요." + ANSI_RESET);
                 continue;
             }
+            stdNo = inputNums[0];
+            subNo = inputNums[1];
+            term = inputNums[2];
 
-            System.out.println("[새롭게 등록할 점수를 입력해주세요.]");
-            System.out.print("점수 : ");
-            int score;
-
-            while(true) {
-                try {
-                    score = sc.nextInt();
-                    sc.nextLine();
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("[숫자를 입력해주세요.]");
-                    sc.nextLine();
-                }
-            }
-
-            if (score > 100 || score < 0) {
-                System.out.println("[점수는 0~100점 범위 내에서 입력해주세요.]");
+            if (!managementApplication.getScoreMap().containsKey(new ScoreKey(stdNo, subNo, term))) {
+                System.out.println(ANSI_RED + "해당하는 점수 기록이 존재하지 않습니다." + ANSI_RESET);
                 continue;
-            }
-
-            Score scoreSub = new Score(stdNo, subNo, term, score);
-
-            if (managementApplication.getScoreMap().containsKey(scoreSub.hashCode())) {
-                managementApplication.getScoreMap().put(scoreSub.hashCode(), scoreSub);
-                System.out.println("[수정이 완료되었습니다.]");
             }
 
             break;
+        }
+
+        System.out.println("[새롭게 등록할 점수를 입력해주세요.]");
+        System.out.print("점수 : ");
+        int score;
+
+        while (true) {
+            try {
+                score = sc.nextInt();
+                sc.nextLine();
+
+                if (score > 100 || score < 0) {
+                    System.out.println(ANSI_RED + "점수는 0~100점 범위 내에서 입력해주세요." + ANSI_RESET);
+                    continue;
+                }
+
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("[숫자를 입력해주세요.]");
+                sc.nextLine();
+            }
+        }
+
+
+        Score scoreSub = new Score(stdNo, subNo, term, score);
+        ScoreKey scoreKey = new ScoreKey(stdNo, subNo, term);
+
+        if (managementApplication.getScoreMap().containsKey(scoreKey)) {
+            managementApplication.getScoreMap().put(scoreKey, scoreSub);
+            System.out.println("[수정이 완료되었습니다.]");
         }
     }
 }

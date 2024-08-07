@@ -8,8 +8,8 @@ public class Score {
     private char grade;
 
     public Score(int stdNo, int subNo, int term, int score) {
-        this.subNo = subNo;
         this.stdNo = stdNo;
+        this.subNo = subNo;
         this.term = term;
         this.score = score;
         this.grade = Subject.getSubjectById(subNo).calculateGrade(score);

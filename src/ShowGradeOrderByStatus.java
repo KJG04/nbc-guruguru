@@ -1,15 +1,14 @@
 import java.util.InputMismatchException;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ShowGradeOrderByStatus implements ManagementActionFunction {
     @Override
-    public void action(ManagementApplication managementApplication){
+    public void action(ManagementApplication managementApplication) {
         Scanner sc = managementApplication.getScanner();
 
-        while(true) {
+        while (true) {
             int cnt = 1;
             System.out.println(" ");
             for (Status status : Status.values()) {
@@ -34,25 +33,25 @@ public class ShowGradeOrderByStatus implements ManagementActionFunction {
                 continue;
             }
 
-            Status status = Status.values()[n-1];
+            Status status = Status.values()[n - 1];
 
-            Map<Integer, Score> orderScore = managementApplication.getScoreMap().entrySet().stream()
+            Map<ScoreKey, Score> orderScore = managementApplication.getScoreMap().entrySet().stream()
                     .filter(entry -> managementApplication.getStudentMap().get(entry.getValue().getStdNo()).getStatus() == status)
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-            cnt=0;
+            cnt = 0;
             int sum = 0;
-            for(Map.Entry<Integer, Score> entry : orderScore.entrySet()) {
+            for (Map.Entry<ScoreKey, Score> entry : orderScore.entrySet()) {
                 sum += entry.getValue().getScore();
                 cnt++;
             }
 
-            if(cnt == 0) {
+            if (cnt == 0) {
                 System.out.println("[해당 상태의 수강생에 대한 점수정보가 존재하지 않습니다.]");
                 break;
             }
 
-            System.out.println(status + " 수강생의 필수과목 평균 등급 : " + CalculateRequiredSubjectGrade.getGrade(sum/cnt));
+            System.out.println(status + " 수강생의 필수과목 평균 등급 : " + CalculateRequiredSubjectGrade.getGrade(sum / cnt));
             break;
         }
     }

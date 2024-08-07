@@ -1,13 +1,14 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
-public class AddStudent implements ManagementActionFunction{
+public class AddStudent implements ManagementActionFunction {
     // Reset color
     public static final String ANSI_RESET = "\u001B[0m";
     // Red color
     public static final String ANSI_RED = "\u001B[31m";
 
     @Override
-    public void action(ManagementApplication managementApplication){
+    public void action(ManagementApplication managementApplication) {
 
         Scanner sc = managementApplication.getScanner();
         Map<Integer, Student> studentMap = managementApplication.getStudentMap();
@@ -17,7 +18,7 @@ public class AddStudent implements ManagementActionFunction{
         while (true) {
             System.out.print("\n수강생의 고유번호를 입력해주세요 : ");
 
-            while(true) {
+            while (true) {
                 try {
                     stdNo = sc.nextInt();
                     sc.nextLine();
@@ -45,84 +46,76 @@ public class AddStudent implements ManagementActionFunction{
         // 필수 과목 입력받기
         System.out.println("필수과목을 입력해주세요(최소 3개)");
         System.out.println("==================");
-        for(int i = 0; i< Arrays.stream(Subject.values()).filter(subject -> subject.isSubType()).count(); i++){
-            System.out.println((Subject.values()[i].getSubId() + ". " + Subject.values()[i].name()));
-        }
+        System.out.println(Arrays.stream(Subject.values()).filter(v -> v.getSubType() == Subject.SubjectType.REQUIRED).map(v -> String.format("%d. %s", v.getSubId(), v.getSubName())).collect(Collectors.joining("\n")));
         System.out.println("==================");
 
-        while (maxRequiredCount < 5) {
-            System.out.print("필수 과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
-            int subNo;
-            while (true) {
-                try {
-                    subNo = sc.nextInt();
-                    sc.nextLine();
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("[숫자를 입력해주세요.]");
-                    sc.nextLine();
-                }
+        while (true) {
+            System.out.print("필수 과목번호를 공백으로 구분지어 입력해주세요: ");
+            String input = sc.nextLine().trim().replaceAll("\\s", " ");
+
+            Set<Integer> nums;
+            try {
+                nums = new HashSet<>(Arrays.stream(input.split(" ")).map(Integer::parseInt).toList());
+            } catch (NumberFormatException e) {
+                System.out.println(ANSI_RED + "숫자를 입력해주세요." + ANSI_RESET);
+                continue;
             }
 
-            if (subNo == -1) {
-                if (maxRequiredCount < 3) {
-                    System.out.println(ANSI_RED + "필수 과목을 3개 이상 입력해야합니다." + ANSI_RESET);
-                    continue;
-                }
-                break;
+            if (nums.isEmpty()) {
+                System.out.println(ANSI_RED + "숫자를 입력해주세요." + ANSI_RESET);
+                continue;
             }
 
-            Subject subject = Subject.getSubjectById(subNo);
-            if (subject.isSubType()) {
-                if (subjects.add(subject)) {
-                    maxRequiredCount++;
-                } else {
-                    System.out.println(ANSI_RED + "입력한 과목 번호는 이미 저장된 과목입니다." + ANSI_RESET);
-                }
-            } else {
-                System.out.println(ANSI_RED + "입력한 과목은 선택과목입니다. 다시 입력해주세요." + ANSI_RESET);
+            if (nums.size() < 3) {
+                System.out.println(ANSI_RED + "3개 이상 입력해주세요." + ANSI_RESET);
+                continue;
             }
+
+            List<Integer> requiredSubjectIds = Arrays.stream(Subject.values()).filter(v -> v.getSubType() == Subject.SubjectType.REQUIRED).map(Subject::getSubId).toList();
+            if (!requiredSubjectIds.containsAll(nums)) {
+                System.out.println(ANSI_RED + "필수 과목 고유 번호를 입력해주세요." + ANSI_RESET);
+                continue;
+            }
+
+            subjects.addAll(nums.stream().map(Subject::getSubjectById).toList());
+            break;
         }
 
         // 선택 과목 입력받기
         System.out.println("선택과목을 입력해주세요(최소 2개)");
         System.out.println("==================");
-        for(int i = (int)Arrays.stream(Subject.values()).filter(subject -> subject.isSubType()).count(); i< Arrays.stream(Subject.values()).count(); i++){
-            System.out.println((Subject.values()[i].getSubId() + ". " + Subject.values()[i].name()));
-        }
+        System.out.println(Arrays.stream(Subject.values()).filter(v -> v.getSubType() == Subject.SubjectType.OPTIONAL).map(v -> String.format("%d. %s", v.getSubId(), v.getSubName())).collect(Collectors.joining("\n")));
         System.out.println("==================");
-        while (maxElectiveCount < 4) {
-            System.out.print("선택 과목번호를 입력해주세요 (종료하려면 -1 입력) : ");
-            int subNo;
-            while (true) {
-                try {
-                    subNo = sc.nextInt();
-                    sc.nextLine();
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("[숫자를 입력해주세요.]");
-                    sc.nextLine();
-                }
+        while (true) {
+            System.out.print("선택 과목번호를 공백으로 구분지어 입력해주세요: ");
+            String input = sc.nextLine().trim().replaceAll("\\s", " ");
+
+            Set<Integer> nums;
+            try {
+                nums = new HashSet<>(Arrays.stream(input.split(" ")).map(Integer::parseInt).toList());
+            } catch (NumberFormatException e) {
+                System.out.println(ANSI_RED + "숫자를 입력해주세요." + ANSI_RESET);
+                continue;
             }
 
-            if (subNo == -1) {
-                if (maxElectiveCount < 2) {
-                    System.out.println(ANSI_RED + "선수 과목을 2개 이상 입력해야합니다." + ANSI_RESET);
-                    continue;
-                }
-                break;
+            if (nums.isEmpty()) {
+                System.out.println(ANSI_RED + "숫자를 입력해주세요." + ANSI_RESET);
+                continue;
             }
 
-            Subject subject = Subject.getSubjectById(subNo);
-            if (!subject.isSubType()) {
-                if (subjects.add(subject)) {
-                    maxElectiveCount++;
-                } else {
-                    System.out.println(ANSI_RED + "입력한 과목 번호는 이미 저장된 과목입니다." + ANSI_RESET);
-                }
-            } else {
-                System.out.println(ANSI_RED + "입력한 과목은 필수과목입니다. 다시 입력해주세요." + ANSI_RESET);
+            if (nums.size() < 2) {
+                System.out.println(ANSI_RED + "2개 이상 입력해주세요." + ANSI_RESET);
+                continue;
             }
+
+            List<Integer> optionalSubjectIds = Arrays.stream(Subject.values()).filter(v -> v.getSubType() == Subject.SubjectType.OPTIONAL).map(Subject::getSubId).toList();
+            if (!optionalSubjectIds.containsAll(nums)) {
+                System.out.println(ANSI_RED + "선택 과목 고유 번호를 입력해주세요." + ANSI_RESET);
+                continue;
+            }
+
+            subjects.addAll(nums.stream().map(Subject::getSubjectById).toList());
+            break;
         }
 
         // 상태 입력

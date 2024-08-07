@@ -1,6 +1,7 @@
 import java.util.Map;
+import java.util.stream.Collectors;
 
-public class StudentList implements ManagementActionFunction{
+public class StudentList implements ManagementActionFunction {
     // Reset color
     public static final String ANSI_RESET = "\u001B[0m";
     // Red color
@@ -24,7 +25,7 @@ public class StudentList implements ManagementActionFunction{
             System.out.println("학생 고유 번호: " + student.getStdNo() + "\n" +
                     "이름: " + student.getName() + "\n" +
                     "상태: " + student.getStatus() + "\n" +
-                    "과목: " + student.getSubList() + "\n");
+                    "과목: " + student.getSubList().stream().map(Subject::getSubName).collect(Collectors.joining(", ", "[", "]")) + "\n");
         }
     }
 }

@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InquiryStudentByStatus implements ManagementActionFunction {
     // Reset color
@@ -11,8 +13,8 @@ public class InquiryStudentByStatus implements ManagementActionFunction {
         Scanner scanner = managementApplication.getScanner();
         Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
-        Status statusToQuery  = null;
-        while (statusToQuery  == null) {
+        Status statusToQuery = null;
+        while (statusToQuery == null) {
             System.out.print("\n조회하고자 할 상태를 입력해주세요(GREEN, RED, YELLOW) : ");
             String statusInput = scanner.nextLine().toUpperCase();
 
@@ -33,7 +35,7 @@ public class InquiryStudentByStatus implements ManagementActionFunction {
                     System.out.println("학생 고유 번호: " + student.getStdNo() + "\n" +
                             "이름: " + student.getName() + "\n" +
                             "상태: " + student.getStatus() + "\n" +
-                            "과목: " + student.getSubList() + "\n");
+                            "과목: " + student.getSubList().stream().map(Subject::getSubName).collect(Collectors.joining(", ", "[", "]")) + "\n");
                     found = true;
                 }
             } else {

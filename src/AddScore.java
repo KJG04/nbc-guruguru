@@ -9,7 +9,7 @@ public class AddScore implements ManagementActionFunction {
         System.out.print("\n학생 고유 번호 : ");
         int stdNo;
 
-        while(true) {
+        while (true) {
             try {
                 stdNo = sc.nextInt();
                 sc.nextLine();
@@ -24,16 +24,16 @@ public class AddScore implements ManagementActionFunction {
 
         Student student = managementApplication.getStudentMap().get(stdNo);
 
-        if(!Objects.nonNull(student)){
+        if (!Objects.nonNull(student)) {
             System.out.println("[존재하지 않는 학생입니다.]");
             return;
         }
 
-        while(true){
+        while (true) {
             System.out.print("과목 고유 번호 : ");
             int subNo;
 
-            while(true) {
+            while (true) {
                 try {
                     subNo = sc.nextInt();
                     sc.nextLine();
@@ -44,14 +44,14 @@ public class AddScore implements ManagementActionFunction {
                 }
             }
 
-            if(!student.getSubList().contains(Subject.getSubjectById(subNo))){
+            if (!student.getSubList().contains(Subject.getSubjectById(subNo))) {
                 System.out.println("[해당 수강생이 수강하고 있지 않은 과목입니다!]");
                 continue;
             }
             System.out.print("회차 : ");
             int term;
 
-            while(true) {
+            while (true) {
                 try {
                     term = sc.nextInt();
                     sc.nextLine();
@@ -62,7 +62,7 @@ public class AddScore implements ManagementActionFunction {
                 }
             }
 
-            if(term > 10){
+            if (term > 10) {
                 System.out.println("[시험회차는 10회까지 존재합니다.]");
                 continue;
             }
@@ -70,7 +70,7 @@ public class AddScore implements ManagementActionFunction {
             System.out.print("점수 : ");
             int score;
 
-            while(true) {
+            while (true) {
                 try {
                     score = sc.nextInt();
                     sc.nextLine();
@@ -81,18 +81,17 @@ public class AddScore implements ManagementActionFunction {
                 }
             }
 
-            if(score > 100 || score < 0){
+            if (score > 100 || score < 0) {
                 System.out.println("[점수는 0~100점 범위 내에서 입력해주세요.]");
                 continue;
             }
 
             Score subScore = new Score(stdNo, subNo, term, score);
-
-            if(!managementApplication.getScoreMap().containsKey(subScore.hashCode())){
-                managementApplication.getScoreMap().put(subScore.hashCode(), subScore);
+            ScoreKey scoreKey = new ScoreKey(stdNo, subNo, term);
+            if (!managementApplication.getScoreMap().containsKey(scoreKey)) {
+                managementApplication.getScoreMap().put(scoreKey, subScore);
                 System.out.println("[점수 등록이 완료되었습니다.]");
-            }
-            else {
+            } else {
                 System.out.println("[이미 등록된 점수입니다!]");
             }
             break;
