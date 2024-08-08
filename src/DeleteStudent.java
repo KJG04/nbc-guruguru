@@ -15,10 +15,10 @@ public class DeleteStudent implements ManagementActionFunction {
         Scanner scanner = managementApplication.getScanner();
 
         // 학생 ID 입력 받기
-        System.out.print("\n삭제할 수강생의 ID를 입력해주세요 : ");
+        System.out.print("\n삭제할 수강생의 ID를 입력해주세요: ");
         int idToDelete;
 
-        while(true) {
+        while (true) {
             try {
                 idToDelete = scanner.nextInt();
                 scanner.nextLine();

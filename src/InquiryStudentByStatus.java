@@ -15,7 +15,7 @@ public class InquiryStudentByStatus implements ManagementActionFunction {
 
         Status statusToQuery = null;
         while (statusToQuery == null) {
-            System.out.print("\n조회하고자 할 상태를 입력해주세요(GREEN, RED, YELLOW) : ");
+            System.out.print("\n조회하고자 할 상태를 입력해주세요(GREEN, RED, YELLOW): ");
             String statusInput = scanner.nextLine().toUpperCase();
 
             try {
@@ -27,7 +27,7 @@ public class InquiryStudentByStatus implements ManagementActionFunction {
 
         // 특정 상태에 해당하는 수강생을 조회
         boolean found = false;
-        System.out.println(statusToQuery + "에 해당하는 수강생들의 정보 : ");
+        System.out.println(statusToQuery + "에 해당하는 수강생들의 정보: ");
         for (Object object : studentMap.values()) {
             if (object instanceof Student) {
                 Student student = (Student) object;

@@ -18,7 +18,7 @@ public class ShowGradeOrderByStatus implements ManagementActionFunction {
 
             int n = 0;
 
-            System.out.println("\n수강생의 상태를 입력하세요 : ");
+            System.out.println("\n수강생의 상태를 입력하세요: ");
             try {
                 n = sc.nextInt();
                 sc.nextLine();
@@ -51,7 +51,7 @@ public class ShowGradeOrderByStatus implements ManagementActionFunction {
                 break;
             }
 
-            System.out.println(status + " 수강생의 필수과목 평균 등급 : " + CalculateRequiredSubjectGrade.getGrade(sum / cnt));
+            System.out.println(status + " 수강생의 필수과목 평균 등급: " + CalculateRequiredSubjectGrade.getGrade(sum / cnt));
             break;
         }
     }

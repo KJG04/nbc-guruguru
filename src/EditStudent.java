@@ -14,9 +14,9 @@ public class EditStudent implements ManagementActionFunction {
         Map<Integer, Student> studentMap = managementApplication.getStudentMap();
 
         // 학생 ID 입력 받기
-        System.out.print("\n수정할 수강생의 ID를 입력해주세요 : ");
+        System.out.print("\n수정할 수강생의 ID를 입력해주세요: ");
         int idToChange;
-        while(true) {
+        while (true) {
             try {
                 idToChange = scanner.nextInt();
                 scanner.nextLine();
@@ -37,7 +37,7 @@ public class EditStudent implements ManagementActionFunction {
             System.out.println("2. 상태");
             int choice;    // 개행 문자 처리
 
-            while(true) {
+            while (true) {
                 try {
                     choice = scanner.nextInt();
                     scanner.nextLine();
@@ -51,16 +51,16 @@ public class EditStudent implements ManagementActionFunction {
             switch (choice) {
                 case 1:
                     // 이름 수정
-                    System.out.println("새로 바꿀 이름을 입력해주세요 : ");
+                    System.out.println("새로 바꿀 이름을 입력해주세요: ");
                     String name = scanner.nextLine();
                     student.setName(name);
-                    System.out.println("수강생의 이름이 수정되었습니다 : " + name);
+                    System.out.println("수강생의 이름이 수정되었습니다: " + name);
                     break;
                 case 2:
                     // 상태 수정
                     Status newstatus = null;
                     while (newstatus == null) {
-                        System.out.print("새로 바꿀 상태를 입력해주세요.(GREEN, RED, YELLOW) : ");
+                        System.out.print("새로 바꿀 상태를 입력해주세요.(GREEN, RED, YELLOW): ");
                         String statusInput = scanner.nextLine().toUpperCase();
 
                         try {
@@ -70,7 +70,7 @@ public class EditStudent implements ManagementActionFunction {
                         }
                     }
                     student.setStatus(newstatus);
-                    System.out.println("수강생인 " + student.getName() + "의 상태가 수정되었습니다 : " + newstatus);
+                    System.out.println("수강생인 " + student.getName() + "의 상태가 수정되었습니다: " + newstatus);
                     break;
                 default:
                     System.out.println(ANSI_RED + "잘못된 선택하셨습니다. 1 또는 2를 입력해주세요." + ANSI_RESET);

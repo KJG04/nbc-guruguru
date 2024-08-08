@@ -42,12 +42,11 @@ public class ReplaceScore implements ManagementActionFunction {
             break;
         }
 
-        System.out.println("[새롭게 등록할 점수를 입력해주세요.]");
-        System.out.print("점수 : ");
         int score;
-
+        System.out.println("[새롭게 등록할 점수를 입력해주세요.]");
         while (true) {
             try {
+                System.out.print("점수: ");
                 score = sc.nextInt();
                 sc.nextLine();
 

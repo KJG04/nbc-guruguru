@@ -6,11 +6,13 @@ public class ShowScore implements ManagementActionFunction {
         }
         for (Score score : managementApplication.getScoreMap().values()) {
             System.out.println("===================\n"
-                    + "학생 이름 : " + managementApplication.getStudentMap().get(score.getStdNo()).getName()
+                    + "학생 고유번호: " + score.getStdNo()
+                    + "\n학생 이름: " + managementApplication.getStudentMap().get(score.getStdNo()).getName()
+                    + "\n과목 고유번호: " + Subject.getSubjectById(score.getSubNo()).getSubName()
                     + "\n과목: " + Subject.getSubjectById(score.getSubNo()).getSubName()
-                    + "\n회차 : " + score.getTerm()
-                    + "\n점수 : " + score.getScore()
-                    + "\n등급 : " + score.getGrade()
+                    + "\n회차: " + score.getTerm()
+                    + "\n점수: " + score.getScore()
+                    + "\n등급: " + score.getGrade()
                     + "\n==================="
             );
         }

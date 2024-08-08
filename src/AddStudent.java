@@ -16,7 +16,7 @@ public class AddStudent implements ManagementActionFunction {
         // 고유번호 입력 및 중복 검사
         int stdNo;
         while (true) {
-            System.out.print("\n수강생의 고유번호를 입력해주세요 : ");
+            System.out.print("\n수강생의 고유번호를 입력해주세요: ");
 
             while (true) {
                 try {
@@ -34,7 +34,7 @@ public class AddStudent implements ManagementActionFunction {
                 break;
             }
         }
-        System.out.print("이름을 입력하세요 : ");
+        System.out.print("이름을 입력하세요: ");
         String stdName = sc.nextLine();
 
         int maxRequiredCount = 0;
@@ -121,7 +121,7 @@ public class AddStudent implements ManagementActionFunction {
         // 상태 입력
         Status status = null;
         while (status == null) {
-            System.out.print("상태를 입력해주세요.(GREEN, RED, YELLOW) : ");
+            System.out.print("상태를 입력해주세요.(GREEN, RED, YELLOW): ");
             String statusInput = sc.nextLine().toUpperCase();
 
             try {
