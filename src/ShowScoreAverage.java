@@ -24,7 +24,7 @@ public class ShowScoreAverage implements ManagementActionFunction {
             int avg = value[0] / value[1];
 
             System.out.println("\n===================");
-            System.out.println("과목 번호: " + key + "\n과목: " + Subject.getSubjectById(key).getSubName() + "\n평균 등급: " + Subject.getSubjectById(key).calculateGrade(avg));
+            System.out.println("과목 번호: " + key + "\n과목: " + Subject.getSubjectById(key).getSubName() + "\n평균 점수: " + avg);
             System.out.println("===================");
         }
     }
